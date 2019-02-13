@@ -8,6 +8,7 @@ class Book(models.Model):
 	condition=models.CharField(max_length=50)
 	isbn=models.CharField(max_length=100)
 	author=models.CharField(max_length=60)
+	inStock = models.BooleanField(default = True)
 
 	def __str__(self):
 		return self.name
@@ -15,7 +16,8 @@ class Book(models.Model):
 class Cart(models.Model):
 	book= models.ForeignKey(Book, on_delete = models.CASCADE)
 	user = models.ForeignKey(User ,on_delete = models.CASCADE)
-	
+
+
 
 
 

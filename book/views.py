@@ -52,6 +52,7 @@ def SignOut(request):
 def BookList(request):
 
 	books=Book.objects.all()
+	
 	bought_by = Cart.objects.filter(user = request.user)
 	books_bought = []
 	for boughtBook in bought_by:
@@ -76,16 +77,22 @@ def BookDetail(request,book_id):
 	return render(request,'detail.html',context)
 
 def addToCart(request,book_id):
-	book = Book.objects.get(id = book_id)
+	book = Book.objects.get(id = book_id )
 	boughtBook , created = Cart.objects.get_or_create(user = request.user , book = book)
 	if created:
 		action = 'add'
+		book.inStock = False
+		book.save()
 	else:
 		action = 'remove'
 		boughtBook.delete()
+		book.inStock = True
+		book.save()
+
 	response = {
 	'action': action
 	}
+
 	return JsonResponse(response)
 
 def create(request):
@@ -141,7 +148,7 @@ def sellerBooks(request):
 
 def sellerSoldBooks(request):
 
-	sold_books = Cart.objects.filter( seller= request.user)
+	sold_books = Book.objects.filter(seller = request.user, inStock= False )
 	context = {
 	'soldBooks':sold_books
 	}

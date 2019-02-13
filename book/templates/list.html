@@ -14,10 +14,15 @@
     <p class="card-text">{{book.condition}}</p>
     <p class="card-text">Seller: {{book.seller}}</p>
     <a href="{% url 'detail' book.id %}" class="btn btn-dark">View</a>
+    {% if book.inStock == True %}
     <button 
     class = 'btn btn-white bg-white  col-2' 
     onClick=Buy({{book.id}})>
     <i class="fas fa-shopping-cart {% if book in books_bought %} text-success {% endif %}" id='Buy-{{book.id}}'></i></button>
+    {% else %}
+
+    <p>Out Of Stock!</p>
+    {% endif %}
   </div>
 </div>
 	{% endfor %}
