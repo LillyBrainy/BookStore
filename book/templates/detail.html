@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Detail of books</h1>
+<div class = 'row '>
+
+
+	<div class="card col-md-4" style="width: 18rem;">
+	{% if book.image %}
+  <img src="{{book.image.url}}" class="card-img-top" alt="pic">
+  {% endif%}
+  <div class="card-body">
+    <h5 class="card-title">Title: {{book.name}}</h5>
+    <p class="card-text">Condition: {{book.condition}}</p>
+    <p class="card-text">author: {{book.author}}</p>
+    <p class="card-text">isbn: {{book.isbn}}</p>
+    
+    <a href="{% url 'detail' book.id %}" class="btn btn-info">Buy</a>
+        <a href="{% url 'update' book.id %}" class="btn btn-info">update</a>
+         <a href="{% url 'delete' book.id %}" class="btn btn-danger">delete</a>
+
+  </div>
+</div>
+	
+</div>
+
+
+
+
+
+{% endblock content%}

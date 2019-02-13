@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>My Sold Books of books</h1>
+<br>
+<div class = 'row '>
+{% for soldBook in soldBooks %}
+
+	<div class="card my-card col-md-4" style="width: 18rem;">
+	{% if soldBook.image %}
+  <img src="{{soldBook.image.url}}" class="card-img-top" alt="pic">
+  {% endif%}
+  <div class="card-body">
+    <h5 class="card-title">{{soldBook.name}}</h5>
+    <p class="card-text">{{misoldBookne.condition}}</p>
+    <p class="card-text">Seller: {{soldBook.seller}}</p>
+    <p class="card-text"> {{soldBook.author}}</p>
+    
+  </div>
+</div>
+	{% endfor %}
+</div>
+{% endblock content %}

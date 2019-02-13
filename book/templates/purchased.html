@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>purchased Books of books</h1>
+<br>
+<div class = 'row '>
+{% for fav in favs %}
+
+	<div class="card my-card col-md-4" style="width: 18rem;">
+	{% if fav.book.image %}
+  <img src="{{fav.book.image.url}}" class="card-img-top" alt="pic">
+  {% endif%}
+  <div class="card-body">
+    <h5 class="card-title">{{fav.book.name}}</h5>
+    <p class="card-text">{{fav.book.condition}}</p>
+    <p class="card-text">Seller: {{fav.book.seller}}</p>
+    <p class="card-text"> {{fav.book.author}}</p>
+    
+  </div>
+</div>
+	{% endfor %}
+</div>
+{% endblock content %}
